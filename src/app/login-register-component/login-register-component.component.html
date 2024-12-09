@@ -1,0 +1,86 @@
+
+
+<div class="LR_container">
+<div *ngIf="errorMessage" [innerHTML]="errorMessage" class="error" ></div>
+<div *ngIf="successMessage" [innerHTML]="successMessage" class="success" ></div>
+<div class="wrapper">
+    <div class="card-switch">
+      <label class="switch">
+        <input
+          type="checkbox"
+          class="toggle"
+          [(ngModel)]="isRegisterMode"
+          (change)="onToggleChange()"
+        />
+        <span class="slider"></span>
+        <span class="card-side"></span>
+        <div class="flip-card__inner">
+          <div *ngIf="!isRegisterMode" class="flip-card__front">
+            <div class="title">Log in</div>
+            <form class="flip-card__form">
+              <input
+                class="flip-card__input"
+                name="email"
+                placeholder="Email"
+                type="email"
+                [(ngModel)]="loginEmail"
+              />
+              <input
+                class="flip-card__input"
+                name="password"
+                placeholder="Password"
+                type="password"
+                [(ngModel)]="loginPassword"
+              />
+              <button class="flip-card__btn" (click)="handleLogin()">Let’s go!</button>
+            </form>
+          </div>
+          <div *ngIf="isRegisterMode" class="flip-card__back">
+            <div class="title">Sign up</div>
+            <form class="flip-card__form">
+              <input
+                class="flip-card__input"
+                placeholder="First Name"
+                type="text"
+                [(ngModel)]="firstName"
+                name="firstName"
+              />
+              <input
+                class="flip-card__input"
+                placeholder="Last Name"
+                type="text"
+                [(ngModel)]="lastName"
+                name="lastName"
+              />
+              <input
+                class="flip-card__input"
+                name="email"
+                placeholder="Email"
+                type="email"
+                [(ngModel)]="email"
+
+              />
+              <input
+                class="flip-card__input"
+                name="password"
+                placeholder="Password"
+                type="password"
+                [(ngModel)]="password"
+
+              />
+              <input
+              class="flip-card__input"
+              name="confirmPassword"
+              placeholder="confirm Password"
+              type="password"
+              [(ngModel)]="confirmPassword"
+
+            />
+              <button class="flip-card__btn" (click)="handleRegister()">Confirm!</button>
+            </form>
+          </div>
+        </div>
+      </label>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.nav-container{
+    display: flex;
+    justify-content: center;
+    background-color: lightgrey;
+    margin-top: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    box-shadow: 4px 4px #323232;
+    padding: 10px 0;
+    
+}
+.nav-container ul{
+    display: flex;
+    gap: 50px;
+    font-family: sans-serif;
+
+}
+.nav-container ul a{
+    padding: 12px;
+
+    transition: 0.3s;
+    border: 2px solid black;
+    color: black;
+}
+.nav-container ul a:hover{
+    background-color: black;
+    color: white;
+}
