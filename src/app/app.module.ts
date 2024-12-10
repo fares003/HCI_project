@@ -7,6 +7,7 @@ import { LoginRegisterComponentComponent } from './login-register-component/logi
 import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { CreateListComponent } from './create-list/create-list.component';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     LoginRegisterComponentComponent,
     NavBarComponent,
     HomePageComponent,
+    CreateListComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,7 @@
     width: 100%;
     box-shadow: 4px 4px #323232;
     padding: 10px 0;
-    
+    margin-bottom: 1000px;
 }
 .nav-container ul{
     display: flex;

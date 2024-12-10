@@ -1,0 +1,153 @@
+<div class="add-list-container">
+  <div class="stages-container">
+    <div [ngClass]="['stages', step === 0 ? 'active' : '']"></div>
+    <div [ngClass]="['stages', step === 1 ? 'active' : '']"></div>
+    <div [ngClass]="['stages', step === 2 ? 'active' : '']"></div>
+  </div>
+  <div class="flow">
+    <div class="back" (click)="toPreviousStep()">
+      <button class="back-button">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png"
+          alt=""
+        />
+      </button>
+
+      <p>Go back</p>
+    </div>
+
+    <div class="next" (click)="validateListInfo()">
+      <p>Go next</p>
+      <button class="next-button">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png"
+          alt=""
+        />
+      </button>
+    </div>
+  </div>
+  <div class="wrapper">
+    <div class="list-info" *ngIf="step === 0">
+      <div class="heading-wrapper">
+        <div class="heading-info">
+          <h2>List details</h2>
+          <p>we just need some info about list your creating</p>
+        </div>
+
+        <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+      </div>
+      <div class="input-feilds">
+        <input
+          type="text"
+          placeholder="Enter list name"
+          class="input-feild"
+          [(ngModel)]="listName"
+        />
+
+        <input
+          type="text"
+          placeholder="Enter the category"
+          class="input-feild"
+          [(ngModel)]="listCatogry"
+        />
+      </div>
+      <button class="next" (click)="validateListInfo()">To add items</button>
+    </div>
+
+
+    <div class="items" *ngIf="step === 1">
+        <div class="heading-wrapper">
+          <div class="heading-info">
+            <h2>Items</h2>
+            <p>Please enter items you want to add to your list</p>
+          </div>
+      
+          <div class="error" *ngIf="errorMessage">{{ errorMessage }}</div>
+        </div>
+      
+        <div class="input-feilds" *ngFor="let item of items; let i = index">
+          <div class="item-input">
+            <input
+              type="text"
+              placeholder="Enter item name"
+              class="input-feild"
+              [(ngModel)]="items[i].name"
+
+            />
+            <input
+              type="text"
+              placeholder="Enter item description"
+              class="input-feild"
+              [(ngModel)]="items[i].description"
+
+            />
+            <input
+              type="number"
+              placeholder="Enter item price"
+              class="input-feild"
+              [(ngModel)]="items[i].price"
+
+            />
+            <input
+            type="text"
+            placeholder="Enter the photo link"
+            class="input-feild"
+            [(ngModel)]="items[i].photo"
+
+          />
+            <button
+              class="remove-button"
+              (click)="removeItem(i)"
+              *ngIf="items.length > 1"
+            >
+              Remove
+            </button>
+          </div>
+        </div>
+      
+        <button class="add-item-button" (click)="addItem()">+ Add Item</button>
+      
+        <button class="next" (click)="validateItems()">Next</button>
+      </div>
+      <div class="details" *ngIf="step === 2">
+        <div class="heading-info">
+          <h2>List Summary</h2>
+          <p>Here are the details of your list and items:</p>
+        </div>
+      
+        <!-- Display List Name and Category -->
+        <div class="list-details">
+          <p><strong>List Name:</strong> {{ listName }}</p>
+          <p><strong>Category:</strong> {{ listCatogry }}</p>
+        </div>
+      
+        <!-- Display Items -->
+        <div class="items-summary">
+          <h3>Items:</h3>
+          <ul>
+            <li *ngFor="let item of items; let i = index">
+              <strong>Item {{ i + 1 }}:</strong> {{ item.name }} - ${{ item.price }}
+            </li>
+          </ul>
+        </div>
+      
+        <!-- Back and Finish Buttons -->
+        <div class="flow">
+          <div class="back" (click)="toPreviousStep()">
+            <button class="back-button">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3114/3114883.png"
+                alt="Back"
+              />
+            </button>
+            <p>Go Back</p>
+          </div>
+      
+          <div class="finish" (click)="submit()">
+            <button class="next" >Finish</button>
+          </div>
+        </div>
+      </div>
+      
+  </div>
+</div>
