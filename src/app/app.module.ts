@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { CreateListComponent } from './create-list/create-list.component';
+import { AllProductsComponent } from './all-products/all-products.component';
+import { StarRatingModule } from 'angular-star-rating';
 
 @NgModule({
   declarations: [
@@ -16,11 +18,14 @@ import { CreateListComponent } from './create-list/create-list.component';
     NavBarComponent,
     HomePageComponent,
     CreateListComponent,
+    AllProductsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    StarRatingModule.forRoot()
+
   ],
   providers: [
     provideClientHydration(withEventReplay())

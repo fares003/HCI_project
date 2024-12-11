@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import  axios  from 'axios';
+import { AuthService } from '../auth-service.service'; 
 
 @Component({
   selector: 'app-create-list',
@@ -16,7 +17,8 @@ errorMessage:string='';
 items: { name: string; description: string; price: number,photo:string }[] = [
   { name: '', description: '', price: 0 ,photo:''},
 ]; 
-owner:string='6756ca77e098e38d8e04ecf7'
+constructor(private authService: AuthService) {} 
+
 toNextStep():void{
   if (this.step<2) {
   this.step+=1
@@ -68,7 +70,7 @@ submit():void{
   const registerData = {
     listname: this.listName,
     category: this.listCatogry,
-    owner: this.owner,
+    owner: this.authService.getCurrentUser().id,
     items: this.items
   };
   axios.post('http://localhost:3500/lists', registerData)

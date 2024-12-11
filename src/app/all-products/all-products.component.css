@@ -1,0 +1,320 @@
+.all-products-container{
+margin-top: 150px;
+display: flex;
+flex-direction: column;
+gap: 50px;
+font-family: sans-serif;
+}
+/* From Uiverse.io by TimTrayler */ 
+.searchbar {
+    font-size: 14px;
+    font-family: arial, sans-serif;
+    color: #202124;
+    display: flex;
+    z-index: 3;
+    height: 44px;
+    background: white;
+    border: 1px solid #dfe1e5;
+    box-shadow: none;
+    border-radius: 24px;
+    margin: 0 auto;
+    width: 80%;
+   
+  }
+  
+  .searchbar:hover {
+    box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
+    border-color: rgba(223,225,229,0);
+  }
+  
+  .searchbar-wrapper {
+    flex: 1;
+    display: flex;
+    padding: 5px 8px 0 14px;
+  }
+  
+  .searchbar-left {
+    font-size: 14px;
+    font-family: arial, sans-serif;
+    color: #202124;
+    display: flex;
+    align-items: center;
+    padding-right: 13px;
+    margin-top: -5px;
+  }
+  
+  .search-icon-wrapper {
+    margin: auto;
+  }
+  
+  .search-icon {
+    margin-top: 3px;
+    color: #9aa0a6;
+    height: 20px;
+    line-height: 20px;
+    width: 20px;
+  }
+  
+  .searchbar-icon {
+    display: inline-block;
+    fill: currentColor;
+    height: 24px;
+    line-height: 24px;
+    position: relative;
+    width: 24px;
+  }
+  
+  .searchbar-center {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  
+  .searchbar-input-spacer {
+    color: transparent;
+    flex: 100%;
+    white-space: pre;
+    height: 34px;
+    font-size: 16px;
+  }
+  
+  .searchbar-input {
+    background-color: transparent;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: rgba(0, 0, 0, .87);
+    word-wrap: break-word;
+    outline: none;
+    display: flex;
+    flex: 100%;
+    margin-top: -37px;
+    height: 34px;
+    font-size: 16px;
+    max-width: 100%;
+    width: 100%;
+  }
+  
+  .searchbar-right {
+    display: flex;
+    flex: 0 0 auto;
+    margin-top: -5px;
+    align-items: stretch;
+    flex-direction: row
+  }
+  
+  .searchbar-clear-icon {
+    margin-right: 12px
+  }
+  
+  .voice-search {
+    flex: 1 0 auto;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    border: 0;
+    background: transparent;
+    outline: none;
+    padding: 0 8px;
+    width: 2.8em;
+  }
+  /***********************************************************/
+
+
+.products-filters-wrapper{
+    display: grid;
+    grid-template-columns: 0.3fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 0px;
+    padding: 0px 15px;
+}
+.filters,
+.products{
+background-color: white;
+border-radius: 5px;
+padding: 5px;
+}
+.products{
+display: flex;
+flex-direction: column;
+}
+.products .items{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows:auto;
+    grid-column-gap: 100px;
+    grid-row-gap: 0px; 
+    margin: 10px auto;
+}
+.products .items .card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 250px;
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+  background-color: #f2f2f2;
+  margin-bottom: 20px;
+  color: #4c4c4c;
+
+}
+.products .items .card img{
+  background-color: white;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 10px;
+}
+.products .items .card .info{
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  
+}
+.paying-info{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.paying-info .price{
+  font-size: 22px;
+  font-weight: 600;
+}
+.ownerName {
+  text-transform: capitalize;
+  margin-bottom: 10px;
+}
+.ownerName span{
+  font-weight: 800;
+}
+.card button{
+  border: 0;
+  background-color: #305cf1;
+  padding: 10px;
+  border-radius: 15px;
+  color: white;
+  font-size: 17px;
+  cursor: pointer;
+
+}
+.card button:hover{
+  opacity: 0.8;
+}
+.category{
+  background-color: #ff4613;
+  padding: 5px;
+  border-radius: 10px;
+  width: fit-content;
+  color: white;
+  
+  
+}
+.filters {
+  font-family: sans-serif;
+  padding: 20px 40px;
+  height: fit-content;
+  padding-bottom: 50px;
+}
+
+.filters h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #f2f2f2;
+  padding-bottom: 5px;
+}
+
+.filters-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+  max-height: 600px;
+  overflow-y: scroll;
+  margin-bottom: 50px;
+}
+.filter-box{
+  margin-bottom: 3px;
+}
+filters-boxes:-webkit-scrollbar {
+  width: 10px;
+  scrollbar-arrow-color: none;
+}
+
+/* Track */
+filters-boxes:-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+ 
+/* Handle */
+filters-boxes:-webkit-scrollbar-thumb {
+  background: #888; 
+}
+.filter-box {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between the checkbox and the label */
+  font-size: 16px;
+}
+
+.filter {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #305cf1; /* Add a custom color for the checkbox */
+}
+
+.filter-box label {
+  cursor: pointer; /* Make the label clickable */
+}
+
+.slider{
+  -webkit-appearance: none;  /* Override default CSS styles */
+  appearance: none;
+  width: 100%; /* Full-width */
+  height: 20px; /* Specified height */
+  background: #d3d3d3; /* Grey background */
+  outline: none; /* Remove outline */
+  opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+  -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+  transition: opacity .2s;
+  border-radius: 10px;
+  color: #ff4613;
+  margin-bottom: 20px;
+  
+}
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  width: 20px; /* Set a specific slider handle width */
+  height: 20px; /* Slider handle height */
+  background: #305cf1; /* Green background */
+  cursor: pointer;
+  border-radius: 100%; 
+  border: 2px solid white;
+}
+.money{
+  display: flex;
+  gap: 150px;
+}
+.star-rating {
+  display: flex;
+  gap: 5px; /* Space between stars */
+}
+
+.star {
+  font-size: 24px; /* Adjust size as needed */
+  color: #e0e0e0; /* Default gray color for inactive stars */
+}
+
+.star.active {
+  color: #ffc107; /* Gold/orange color for active stars */
+}
+
+/* Disable pointer events to prevent user interaction */
+.star-rating {
+  pointer-events: none;
+}
+

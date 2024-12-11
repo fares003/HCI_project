@@ -1,0 +1,111 @@
+<div class="all-products-container">
+  <div class="search">
+    <div class="searchbar">
+      <div class="searchbar-wrapper">
+        <div class="searchbar-left">
+          <div class="search-icon-wrapper">
+            <span class="search-icon searchbar-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path
+                  d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                ></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+
+        <div class="searchbar-center">
+          <div class="searchbar-input-spacer"></div>
+
+          <input
+          type="text"
+          class="searchbar-input"
+          maxlength="2048"
+          name="q"
+          autocapitalize="off"
+          autocomplete="off"
+          title="Search"
+          role="combobox"
+          placeholder="Search for any item or list"
+          [(ngModel)]="searchTerm" 
+          (input)="onSearchChange()"
+            
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="products-filters-wrapper">
+    <div class="filters">
+        <h2>Filter by </h2>
+        <p>Category</p>
+        <div class="filter-box" *ngFor="let category of categories.categories; let i = index">
+            <input
+              class="filter"
+              type="checkbox"
+              id="{{category}}"
+              name="{{category}}"
+              value="{{category}}"
+              (change)="onCategoryChange($event, category)"
+            >
+            <label for="{{category}}">
+              {{category}}
+            </label>
+          </div>
+          
+          
+        <h2>Filter by</h2>
+        <p>Price</p>
+        <input   type="range" 
+        min="1" 
+        max="10000" 
+        class="slider" 
+        [(ngModel)]="maxPrice" 
+        (input)="onPriceChange()">
+   
+           
+        
+        <span>max price: {{maxPrice}}$</span>
+
+    </div>
+    
+    <div class="products">
+      <div class="info">
+        <span class="count" *ngIf="products.lists"
+          >{{ products.lists.length }} results</span
+        >
+      </div>
+      <div class="items">
+        <div class="card" *ngFor="let item of products; let i = index">
+          <img [src]="item.photo" alt="{{ item.name }}" />
+          <div class="info">
+            <h2 class="name">{{ item.name }}</h2>
+            <div class="category">{{ item.list.category }}</div>
+            <span class="list-name">{{ item.list.listname }}</span>
+            <div class="ownerName">
+              by
+              <span>{{ item.owner.firstname }} {{ item.owner.lastname }}</span>
+            </div>
+            <div class="star-rating">
+                <span
+                  *ngFor="let star of stars; let index = index"
+                  [class.star-active]="index < item.rating"
+                  [class.star]="index >= item.rating"
+                >
+                  &#9733; <!-- Unicode for a star -->
+                </span>
+              </div>
+              
+              
+
+
+            <div class="paying-info">
+              <div class="price">{{ item.price }} $</div>
+              <button class="add-wishlist">add to wishlist</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

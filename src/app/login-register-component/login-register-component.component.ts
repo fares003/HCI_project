@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import  axios  from 'axios';
+import { AuthService } from '../auth-service.service'; 
+
 @Component({
   selector: 'app-login-register-component',
   standalone: false,
@@ -8,7 +9,7 @@ import  axios  from 'axios';
   styleUrl: './login-register-component.component.css'
 })
 export class LoginRegisterComponentComponent {
-  isRegisterMode: boolean = false; // Default to login mode
+  isRegisterMode: boolean = false; 
   firstName:string='';
   lastName:string='';
   email:string='';
@@ -19,6 +20,8 @@ export class LoginRegisterComponentComponent {
   errorMessage:string='';
   successMessage:string='';
   regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
+
+  constructor(private authService: AuthService) {} 
   // Called when the toggle changes
   onToggleChange(): void {
     if (this.isRegisterMode) {
@@ -64,37 +67,16 @@ const registerData = {
   password: this.password
 };
 
-axios.post('http://localhost:3500/register', registerData)
-.then(response => {
-  this.successMessage="Registration successfully done"
+this.authService
+.registerUser(registerData)
+.then(() => {
+  this.successMessage = 'Registration successfully done';
   this.resetForm();
-  this.clearMessageAfterTimeout('success')
-
+  this.clearMessageAfterTimeout('success');
 })
-.catch(error => {
-  if (error.response) {
-    // Server responded with an error
-    switch (error.response.status) {
-      case 400:
-        this.errorMessage = "All fields are required. Please fill in all fields!";
-        break;
-      case 409:
-        this.errorMessage = "The email is already registered. Please use a different email!";
-        break;
-      case 500:
-        this.errorMessage = "something goes wrong please try again later";
-        break;
-      default:
-        this.errorMessage = "An unknown error occurred. Please try again!";
-        break;
-    }
-    this.clearMessageAfterTimeout('error')
-  } else {
-    // No response from server
-    this.errorMessage = "Failed to connect to the server. Please check your internet connection!";
-    this.clearMessageAfterTimeout('error')
-
-  }
+.catch((error) => {
+  this.errorMessage = error.message;
+  this.clearMessageAfterTimeout('error');
 });
 }else{
 console.log("stop hack me i can see you")
@@ -121,33 +103,17 @@ console.log("stop hack me i can see you")
         email:this.loginEmail,
         password:this.loginPassword
       }
-      axios.post('http://localhost:3500/login', loginData)
-.then(response => {
-  this.successMessage="login successfully done"
-  this.resetForm();
-  this.clearMessageAfterTimeout('success')
-
-})
-.catch(error => {
-  if (error.response) {
-    // Server responded with an error
-    switch (error.response.status) {
-      case 400:
-        this.errorMessage = "All fields are required. Please fill in all fields!";
-        break;
-      case 401:
-        this.errorMessage = "email or password are wrong";
-        break;
-      case 500:
-        this.errorMessage = "something goes wrong please try again later";
-        break;
-      default:
-        this.errorMessage = "An unknown error occurred. Please try again!";
-        break;
-    }
-    this.clearMessageAfterTimeout('error')
-  
-  }})
+      this.authService
+        .loginUser(loginData)
+        .then(() => {
+          this.successMessage = 'Login successfully done';
+          this.resetForm();
+          this.clearMessageAfterTimeout('success');
+        })
+        .catch((error) => {
+          this.errorMessage = error.message;
+          this.clearMessageAfterTimeout('error');
+        });
   }
   }
   
