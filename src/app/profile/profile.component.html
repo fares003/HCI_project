@@ -1,0 +1,57 @@
+<div class="profile-container">
+    <div class="lists-col">
+        <h2>Your lists:</h2>
+        <div class="details">
+            <div *ngFor="let list of lists.lists" class="list-details">
+              <h2>{{ list.listname }}</h2>
+              <p>Category: {{ list.category }}</p>
+              <div class="items-summary">
+                <h3>Items:</h3>
+                <ul>
+                  <li *ngFor="let item of list.items">
+                    <img [src]="item.photo" alt="{{ item.name }}" width="50" height="50" />
+                    <span>{{ item.name }} - ${{ item.price }}</span>
+                  </li>
+                </ul>
+              </div>
+              <button class="delete-button" (click)="deleteList(list._id)">Delete List</button>
+            </div>
+          </div>
+          <button class="animated-button" (click)="toCreateList()">
+            <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+            <span class="text">add new list</span>
+            <span class="circle"></span>
+            <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
+              ></path>
+            </svg>
+          </button>
+    </div>
+    <div class="feedback-col">
+        <div class="reviews-container">
+            <div class="reviews-title">
+              <h2>Products feedback</h2>
+            </div>
+          
+            <div *ngFor="let review of reviews.reviews" class="review-card">
+              <div class="review-header">
+                <p class="item-name">{{ review.item.name }}</p>
+                <p class="reviewer-name">{{ review.owner.firstname }} {{ review.owner.lastname }}</p>
+              </div>
+              <div class="review-body">
+                <p class="review-text">{{ review.review }}</p>
+                <p class="review-rating">Rating: {{ review.rating }} / 5</p>
+              </div>
+              <div class="review-footer">
+                <p class="review-date">{{ review.createdAt | date: 'short' }}</p>
+              </div>
+            </div>
+          </div>
+          
+    </div>
+</div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsServiceService } from '../products-service.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-all-products',
   standalone: false,
@@ -16,7 +16,7 @@ export class AllProductsComponent implements OnInit {
   maxPrice: number = 10000;
   item = { rating: 5 }; // Replace 3 with the rating fetched from the database
   stars: number[] = [1, 2, 3, 4, 5]; 
-  constructor(private productsService: ProductsServiceService) {}
+  constructor(private productsService: ProductsServiceService ,private router: Router) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -63,5 +63,7 @@ export class AllProductsComponent implements OnInit {
     // Pass all filters (selectedCategories, searchTerm, minPrice, maxPrice) to the loadProducts method
     this.loadProducts(this.selectedCategories, this.searchTerm, 0, this.maxPrice);
   }
-  
+  toProductPage(id:string):void{
+    this.router.navigate(['/product',id])
+  }
 }

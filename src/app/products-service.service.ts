@@ -83,8 +83,30 @@ async getFilteredProducts(filters: { categories?: string[]; search?: string; max
     }
   }
 }
-
-
+async getProduct(id:string|null):Promise<any[]>{
+try {
+  const response = await axios.get(`${this.apiBaseUrl}/items/${id}`);
+  return response.data;
+} catch (error:any) {
+  if (error.response) {
+    throw new Error(error.response.data.message || 'Error fetching product');
+  } else {
+    throw new Error('Failed to connect to the server. Please check your internet connection!');
+  }
+}
+}
+async getReviews(id:string|null):Promise<any[]>{
+  try {
+    const response = await axios.get(`${this.apiBaseUrl}/reviews/${id}`);
+    return response.data;
+  } catch (error:any) {
+    if (error.response) {
+      throw new Error(error.response.data.message || 'Error fetching product');
+    } else {
+      throw new Error('Failed to connect to the server. Please check your internet connection!');
+    }
+  }
+}
 async getAllCategories():Promise<any[]>{
   try {
     const response = await axios.get(`${this.apiBaseUrl}/categories`);

@@ -10,6 +10,10 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { CreateListComponent } from './create-list/create-list.component';
 import { AllProductsComponent } from './all-products/all-products.component';
 import { StarRatingModule } from 'angular-star-rating';
+import { ProductInfoComponent } from './product-info/product-info.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MessageComponent } from './message/message.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,10 @@ import { StarRatingModule } from 'angular-star-rating';
     HomePageComponent,
     CreateListComponent,
     AllProductsComponent,
+    ProductInfoComponent,
+    ProfileComponent,
+    MessageComponent,
+    NotificationsComponent,
   ],
   imports: [
     BrowserModule,

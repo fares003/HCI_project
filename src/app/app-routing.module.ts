@@ -5,6 +5,10 @@ import { LoginRegisterComponentComponent } from './login-register-component/logi
 import { CreateListComponent } from './create-list/create-list.component';
 import { AllProductsComponent } from './all-products/all-products.component';
 import { AuthGuard } from './auth-gaurd.service';
+import { ProductInfoComponent } from './product-info/product-info.component';
+import { ProfileComponent } from './profile/profile.component';
+import { MessageComponent } from './message/message.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 const routes: Routes = [
 
   {path:'' ,redirectTo:'home',pathMatch:'full'},
@@ -12,6 +16,14 @@ const routes: Routes = [
   {path:'login-register', component:LoginRegisterComponentComponent},
   {path:'create-list', component:CreateListComponent,canActivate:[AuthGuard]},
   {path:'products', component:AllProductsComponent,canActivate:[AuthGuard]},
+  {path:'product/:id', component:ProductInfoComponent,canActivate:[AuthGuard]},
+  {path:'profile', component:ProfileComponent,canActivate:[AuthGuard]},
+  {path:'chat/:id', component:MessageComponent,canActivate:[AuthGuard]},
+  {path:'notification', component:NotificationsComponent,canActivate:[AuthGuard]},
+
+
+
+
 
   {path:'**', redirectTo:'home'},
 ];

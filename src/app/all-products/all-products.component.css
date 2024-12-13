@@ -158,6 +158,7 @@ flex-direction: column;
   background-color: #f2f2f2;
   margin-bottom: 20px;
   color: #4c4c4c;
+  cursor: pointer;
 
 }
 .products .items .card img{
