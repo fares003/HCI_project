@@ -279,4 +279,15 @@ text-transform: capitalize;
   
   /* Disable pointer events to prevent user interaction */
 
-  
+.error{
+    color: red;
+    font-size: larger;
+    padding: 5px;
+    font-weight: 600;
+  }
+.success{
+    color: green;
+    font-size: larger;
+    padding: 5px;
+    font-weight: 600;
+  }

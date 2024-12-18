@@ -306,16 +306,25 @@ filters-boxes:-webkit-scrollbar-thumb {
 }
 
 .star {
-  font-size: 24px; /* Adjust size as needed */
-  color: #e0e0e0; /* Default gray color for inactive stars */
+  font-size: 30px; /* Adjust size as needed */
+  color: #8d8d8d; /* Default gray color for inactive stars */
 }
 
-.star.active {
-  color: #ffc107; /* Gold/orange color for active stars */
+.star-active {
+  color: #ffc107; 
+  font-size: 30px; /* Adjust size as needed */
 }
 
-/* Disable pointer events to prevent user interaction */
-.star-rating {
-  pointer-events: none;
-}
 
+.wishError{
+  color: red;
+  font-size: larger;
+  padding: 5px;
+  font-weight: 600;
+}
+.wishSucess{
+  color: green;
+  font-size: larger;
+  padding: 5px;
+  font-weight: 600;
+}

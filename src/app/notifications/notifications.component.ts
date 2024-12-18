@@ -18,21 +18,17 @@ export class NotificationsComponent {
     this.startPolling();
   }
 
-   loadNotifications() {
-     this.notificationService.getNotifications(this.auth.getCurrentUser().id).subscribe((data: any) => {
-      this.notifications = data.notifications;
-    });
+   async loadNotifications() {
+    this.notifications=await  this.notificationService.getNotifications(this.auth.getCurrentUser().id)
   }
 
   startPolling() {
     setInterval(() => {
       this.loadNotifications();
-    }, 5000); // Check for new notifications every 5 seconds
+    }, 5000); 
   }
 
   markAsRead(notificationId: string) {
-    this.notificationService.markAsRead(notificationId).subscribe(() => {
-      this.loadNotifications(); // Reload notifications after marking one as read
-    });
+    this.notificationService.markAsRead(notificationId)
   }
 }

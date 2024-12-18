@@ -26,7 +26,6 @@ this.getAllFeedback()
 async getAllLits():Promise<void>{
   try {
     this.lists = await this.profileServ.getList(this.authServ.getCurrentUser().id);
-    console.log(this.lists)
     
   } catch (error:any) {
     console.error('Error fetching product:', error.message);
@@ -40,7 +39,6 @@ toCreateList():void{
 async getAllFeedback():Promise<void>{
   try {
     this.reviews = await this.profileServ.getFeedback(this.authServ.getCurrentUser().id);
-    console.log(this.reviews)
     
   } catch (error:any) {
     console.error('Error fetching product:', error.message);

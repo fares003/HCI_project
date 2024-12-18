@@ -2,6 +2,9 @@
     <div class="info-row">
 
         <div class="main-info-col">
+            <div class="success" [innerHTML]="wishListSuccess" *ngIf="wishListSuccess"></div>
+            <div class="error" [innerHTML]="wishListError" *ngIf="wishListError"></div>
+
             <img *ngIf="item.item" [src]="item.item.photo" alt="">
             <h2>{{item.item.name}}</h2>
             <h1>{{item.item.price}} $</h1>
@@ -14,7 +17,7 @@
                   &#9733; <!-- Unicode for a star -->
                 </span>
               </div>
-              <button class="wishlist"><span>add to wishlist</span></button>
+              <button class="wishlist" (click)="addToWishList()"><span>add to wishlist</span></button>
         </div>
         <div class="sec-info-col">
            <span class="listName">From List:<br><br> <span>{{item.item.list.listname}}</span></span>

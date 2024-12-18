@@ -9,6 +9,8 @@ import { ProductInfoComponent } from './product-info/product-info.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MessageComponent } from './message/message.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { InsightsComponent } from './insights/insights.component';
 const routes: Routes = [
 
   {path:'' ,redirectTo:'home',pathMatch:'full'},
@@ -20,6 +22,8 @@ const routes: Routes = [
   {path:'profile', component:ProfileComponent,canActivate:[AuthGuard]},
   {path:'chat/:id', component:MessageComponent,canActivate:[AuthGuard]},
   {path:'notification', component:NotificationsComponent,canActivate:[AuthGuard]},
+  {path:'wishlist', component:WishlistComponent,canActivate:[AuthGuard]},
+  {path:'insights', component:InsightsComponent,canActivate:[AuthGuard]},
 
 
 

@@ -4,6 +4,7 @@ import { ProductsServiceService } from '../products-service.service';
 import axios from 'axios';
 import { AuthService } from '../auth-service.service';
 import { Router } from '@angular/router';
+import { WishlistService } from '../wishlist.service';
 
 @Component({
   selector: 'app-product-info',
@@ -20,9 +21,12 @@ export class ProductInfoComponent {
   reviews:any=[]
   review:string='';
   hoveredIndex=0
+  wishListSuccess:string=''
+  wishListError:string=''
+
   private apiBaseUrl: string = 'http://localhost:3500';
 
-  constructor(private productService:ProductsServiceService,private route: ActivatedRoute,private auth:AuthService,private router2: Router){}
+  constructor(private productService:ProductsServiceService,private route: ActivatedRoute,private auth:AuthService,private router2: Router,private wishlistServ:WishlistService){}
   ngOnInit(): void {
     this.productId = this.route.snapshot.paramMap.get('id');
     this.getChosenItem()
@@ -50,6 +54,35 @@ try {
 }
 }
 }
+addToWishList(): void {
+  const data = {
+    userId: this.auth.getCurrentUser().id,
+    itemId: this.item.item._id 
+  };
+
+
+
+  this.wishlistServ.addToWishlist(data)
+    .then((response) => {
+      this.wishListSuccess = 'Item added to wishlist successfully!';
+      this.clearMessageAfterTimeout('success')
+    })
+    .catch((error) => {
+      this.wishListError = error.message;
+      this.clearMessageAfterTimeout('error')
+    });
+}
+clearMessageAfterTimeout(msg:string): void {
+  setTimeout(() => {
+    if(msg==="success"){
+      this.wishListSuccess = '';
+    }
+    else if(msg==="error"){
+      this.wishListError='';
+    }
+  }, 3000); // Clear message after 3 seconds
+}
+
   async getChosenItem(): Promise<void> {
     try {
       if (this.productId) {

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../auth-service.service'; 
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-register-component',
@@ -21,7 +22,7 @@ export class LoginRegisterComponentComponent {
   successMessage:string='';
   regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&]{8,15}$/;
 
-  constructor(private authService: AuthService) {} 
+  constructor(private authService: AuthService,private router: Router) {} 
   // Called when the toggle changes
   onToggleChange(): void {
     if (this.isRegisterMode) {
@@ -73,6 +74,7 @@ this.authService
   this.successMessage = 'Registration successfully done';
   this.resetForm();
   this.clearMessageAfterTimeout('success');
+  this.router.navigate(['home'])
 })
 .catch((error) => {
   this.errorMessage = error.message;
@@ -109,6 +111,8 @@ console.log("stop hack me i can see you")
           this.successMessage = 'Login successfully done';
           this.resetForm();
           this.clearMessageAfterTimeout('success');
+          this.router.navigate(['home'])
+
         })
         .catch((error) => {
           this.errorMessage = error.message;

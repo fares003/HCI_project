@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import  axios  from 'axios';
 import { AuthService } from '../auth-service.service'; 
+import { CreateListService } from '../create-list.service';
 
 @Component({
   selector: 'app-create-list',
@@ -17,8 +18,16 @@ errorMessage:string='';
 items: { name: string; description: string; price: number,photo:string }[] = [
   { name: '', description: '', price: 0 ,photo:''},
 ]; 
-constructor(private authService: AuthService) {} 
-
+constructor(private authService: AuthService,private createListServ:CreateListService) {} 
+resetForm(){
+  this.step=0;
+  this.listName='';
+  this.listCatogry='';
+  this.errorMessage='';
+this.items = [
+  { name: '', description: '', price: 0 ,photo:''},
+]; 
+}
 toNextStep():void{
   if (this.step<2) {
   this.step+=1
@@ -66,41 +75,19 @@ validateItems() {
     
   }
 }
-submit():void{
+async submit():Promise<void>{
   const registerData = {
     listname: this.listName,
     category: this.listCatogry,
     owner: this.authService.getCurrentUser().id,
     items: this.items
   };
-  axios.post('http://localhost:3500/lists', registerData)
-.then(response => {
-console.log(response)
-})
-.catch(error => {
-  if (error.response) {
-    // Server responded with an error
-    switch (error.response.status) {
-      case 400:
-        this.errorMessage = "All fields are required. Please fill in all fields!";
-        break;
-      case 409:
-        this.errorMessage = "The email is already registered. Please use a different email!";
-        break;
-      case 500:
-        this.errorMessage = "something goes wrong please try again later";
-        break;
-      default:
-        this.errorMessage = "An unknown error occurred. Please try again!";
-        break;
-    }
-    this.clearMessageAfterTimeout()
-  } else {
-    // No response from server
-    this.errorMessage = "Failed to connect to the server. Please check your internet connection!";
-    this.clearMessageAfterTimeout()
 
+  try {
+    await this.createListServ.createAList(registerData)
+    this.resetForm()
+  } catch (error: any) {
+    this.errorMessage = error.message;
   }
-})
 }
 }

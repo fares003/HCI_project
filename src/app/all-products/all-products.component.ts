@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsServiceService } from '../products-service.service';
 import { Router } from '@angular/router';
+import { WishlistService } from '../wishlist.service';
+import { AuthService } from '../auth-service.service';
 @Component({
   selector: 'app-all-products',
   standalone: false,
@@ -16,7 +18,10 @@ export class AllProductsComponent implements OnInit {
   maxPrice: number = 10000;
   item = { rating: 5 }; // Replace 3 with the rating fetched from the database
   stars: number[] = [1, 2, 3, 4, 5]; 
-  constructor(private productsService: ProductsServiceService ,private router: Router) {}
+  wishListError:string=''
+  wishListSuccess:string=''
+
+  constructor(private productsService: ProductsServiceService ,private router: Router,private wishlistServ:WishlistService,private authServ:AuthService) {}
 
   ngOnInit(): void {
     this.loadProducts();
@@ -48,6 +53,44 @@ export class AllProductsComponent implements OnInit {
       this.errorMessage = error.message; // Display the error message
     }
   }
+  clearMessageAfterTimeout(msg:string,item:any): void {
+    setTimeout(() => {
+      if(msg==="success"){
+        item.wishListSuccess = '';
+      }
+      else if(msg==="error"){
+        item.wishListError='';
+      }
+    }, 3000); // Clear message after 3 seconds
+  }
+
+  addToWishList(item: any): void {
+    const data = {
+      userId: this.authServ.getCurrentUser().id,
+      itemId: item._id // Assuming each item has an `id` field
+    };
+  
+    // Clear previous messages for this item
+    item.wishListSuccess = '';
+    item.wishListError = '';
+  
+    this.wishlistServ.addToWishlist(data)
+      .then((response) => {
+        // Set success message for the specific item
+        item.wishListSuccess = 'Item added to wishlist successfully!';
+        this.clearMessageAfterTimeout("success",item)
+      })
+      .catch((error) => {
+        // Set error message for the specific item
+        item.wishListError = error.message;
+        this.clearMessageAfterTimeout("error",item)
+
+      });
+  }
+  
+
+
+
 
   onCategoryChange(event: Event, category: string): void {
     const input = event.target as HTMLInputElement;

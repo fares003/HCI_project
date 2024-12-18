@@ -1,0 +1,33 @@
+<div class="wishlist-container">
+    <div class="error" [innerHTML]="errorMessage" *ngIf="errorMessage">
+
+    </div>
+    <h2 class="wishlist-title">My Wishlist</h2>
+  
+    <div *ngFor="let item of wishList.wishlist" class="wishlist-card">
+      <div class="wishlist-card-content">
+        <!-- Item Image -->
+        <div class="wishlist-image">
+          <img [src]="item.photo" alt="{{item.name}}" />
+        </div>
+  
+        <!-- Item Details -->
+        <div class="wishlist-details">
+          <h3 class="item-name">{{ item.name }}</h3>
+          <p class="item-description">{{ item.description }}</p>
+          <p class="item-price">Price: ${{ item.price }}</p>
+        </div>
+  
+        <!-- Actions -->
+        <div class="wishlist-actions">
+          <button class="btn-remove" (click)="deletetemFromWishlist(item)">Remove</button>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Empty Wishlist Message -->
+    <div *ngIf="wishList.wishlist.length === 0" class="empty-wishlist">
+      <p>Your wishlist is empty. Add some items to your wishlist!</p>
+    </div>
+  </div>
+  

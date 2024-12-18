@@ -1,6 +1,6 @@
 <div class="notifications">
     <div class="notifications-container">
-        <div *ngFor="let notification of notifications" [ngClass]="{ 'new-notification': !notification.isRead, 'old-notification': notification.isRead }">
+        <div *ngFor="let notification of notifications.notifications" [ngClass]="{ 'new-notification': !notification.isRead, 'old-notification': notification.isRead }">
           <div class="notification-content">
             <p>{{ notification.content }}</p>
           </div>

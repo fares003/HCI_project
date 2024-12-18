@@ -1,12 +1,15 @@
 <nav class="nav-container">
 <ul>
+    <img src="../util/Untitled.png" alt="">
     <li><a routerLink="products">All products</a></li>
-    <li><a href="#">Wishlist</a></li>
+    <li><a routerLink="wishlist">Wishlist</a></li>
     <li><a routerLink="profile">Profile</a></li>
-    <li><a routerLink="notification">Notification</a></li>
+    <li><a routerLink="notification">Notification <span class="notification" *ngIf="notification"></span></a></li>
     <li><a routerLink="home">Home</a></li>
     <li><a routerLink="create-list">Create list</a></li>
+    <li><a routerLink="insights">insights</a></li>
 
 
 </ul>
+<button class="log-out" (click)="logOut()"> logout</button>
 </nav>

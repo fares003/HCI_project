@@ -76,8 +76,12 @@
         >
       </div>
       <div class="items">
-        <div class="card"  (click)="toProductPage(item._id)"  *ngFor="let item of products; let i = index" >
-          <img [src]="item.photo" alt="{{ item.name }}" />
+        <div class="card" *ngFor="let item of products; let i = index">
+          <div class="wishSucess" [innerHTML]="item.wishListSuccess" *ngIf="item.wishListSuccess"></div>
+        
+          <div class="wishError" [innerHTML]="item.wishListError" *ngIf="item.wishListError"></div>
+
+          <img [src]="item.photo"  (click)="toProductPage(item._id)"  alt="{{ item.name }}" />
           <div class="info">
             <h2 class="name">{{ item.name }}</h2>
             <div class="category">{{ item.list.category }}</div>
@@ -89,8 +93,7 @@
             <div class="star-rating">
                 <span
                   *ngFor="let star of stars; let index = index"
-                  [class.star-active]="index < item.rating"
-                  [class.star]="index >= item.rating"
+                  [class]="index < item.averageRating?'star-active':'star'"
                 >
                   &#9733; <!-- Unicode for a star -->
                 </span>
@@ -101,7 +104,7 @@
 
             <div class="paying-info">
               <div class="price">{{ item.price }} $</div>
-              <button class="add-wishlist">add to wishlist</button>
+              <button class="add-wishlist" (click)="addToWishList(item)">add to wishlist</button>
             </div>
           </div>
         </div>

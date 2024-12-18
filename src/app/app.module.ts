@@ -14,6 +14,9 @@ import { ProductInfoComponent } from './product-info/product-info.component';
 import { ProfileComponent } from './profile/profile.component';
 import { MessageComponent } from './message/message.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { WishlistComponent } from './wishlist/wishlist.component';
+import { NgChartsModule } from 'ng2-charts';
+import { InsightsComponent } from './insights/insights.component';
 
 @NgModule({
   declarations: [
@@ -27,12 +30,15 @@ import { NotificationsComponent } from './notifications/notifications.component'
     ProfileComponent,
     MessageComponent,
     NotificationsComponent,
+    WishlistComponent,
+    InsightsComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StarRatingModule.forRoot()
+    StarRatingModule.forRoot(),
+    NgChartsModule
 
   ],
   providers: [

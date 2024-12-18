@@ -1,0 +1,16 @@
+<div class="container">
+    <h2>Seller Insights</h2>
+    <div *ngIf="wishlistInsights.length === 0">No wishlist insights available.</div>
+  
+    <!-- Display the chart if there is data -->
+    <canvas
+      *ngIf="wishlistInsights.length > 0"
+      baseChart
+      [datasets]="barChartData"
+      [labels]="barChartLabels"
+      [options]="barChartOptions"
+      [legend]="barChartLegend"
+      [plugins]="barChartPlugins"
+    ></canvas>
+  </div>
+  

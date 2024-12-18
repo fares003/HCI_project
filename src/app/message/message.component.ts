@@ -29,7 +29,7 @@ setUsersId():void{
   this.userId=this.auth.getCurrentUser().id
 }
   loadMessages() {
-    this.chatService.getMessages(this.userId)
+    this.chatService.getMessages(this.userId,this.reciverId)
       .then((data: any) => {
         this.messages = data.messages;
       })
